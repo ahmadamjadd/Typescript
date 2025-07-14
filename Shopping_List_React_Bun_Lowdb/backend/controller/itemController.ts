@@ -23,7 +23,7 @@ export const itemController = {
     const newItem: Item = {
       id: Date.now(),
       name: validation.unwrap(),
-      Bought: false,
+      bought: false,
     };
 
     const result = await storage.addItem(newItem);

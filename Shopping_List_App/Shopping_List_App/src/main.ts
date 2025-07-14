@@ -4,6 +4,8 @@ import type { Item } from "./shoppingList";
 const itemNameInput = document.getElementById("itemName") as HTMLInputElement;
 const addItemBtn = document.getElementById("addItemBtn") as HTMLButtonElement;
 const shoppingListContainer = document.getElementById("shoppingList") as HTMLUListElement;
+const errorMessage = document.getElementById("errorMessage") as HTMLDivElement;
+
 
 const shoppingList = new ShoppingList();
 let nextId = 1; 
@@ -18,7 +20,13 @@ if (savedItems.length > 0) {
 
 addItemBtn.addEventListener("click", () => {
   const itemName = itemNameInput.value.trim();
-  if (itemName === "") return; 
+  if (itemName === "") {
+    errorMessage.textContent = "Field is required!";
+    return; // Stop further execution
+  }
+
+  // ✅ Clear error if field is not empty
+  errorMessage.textContent = ""; 
 
   const newItem: Item = {
     id: nextId++,
